@@ -1,8 +1,10 @@
 import sympy as sp
 from math import lcm
+from typing import List, Tuple
 
 
-def identify_states(weights):
+def identify_states(weights: List[List[int]]) -> Tuple[List[int], List[int]]:
+    """Separates state indices into transient and absorbing categories."""
     transient = []
     absorbing = []
     for i, row in enumerate(weights):
@@ -11,6 +13,7 @@ def identify_states(weights):
         else:
             absorbing.append(i)
     return transient, absorbing
+
 
 def calculate_absorption_probabilities(weights):
     """
@@ -31,7 +34,8 @@ def calculate_absorption_probabilities(weights):
     transient_idx, absorbing_idx = identify_states(weights)
 
     # 2.
-    if not transient_idx: return [1]
+    if not transient_idx:
+        return [1]
 
     # 3.
     q_data = []
@@ -60,12 +64,14 @@ def calculate_absorption_probabilities(weights):
     return result
 
 
-weights = [[0, 6, 0, 0, 0, 3, 0],
-          [3, 0, 5, 1, 0, 1, 1],
-          [0, 1, 0, 0, 0, 0, 0],
-          [0, 3, 0, 0, 0, 0, 0],
-          [0, 0, 0, 0, 0, 0, 0],
-          [0, 0, 0, 0, 0, 0, 0],
-          [0, 0, 0, 0, 0, 0, 0],]
+weights = [
+    [0, 6, 0, 0, 0, 3, 0],
+    [3, 0, 5, 1, 0, 1, 1],
+    [0, 1, 0, 0, 0, 0, 0],
+    [0, 3, 0, 0, 0, 0, 0],
+    [0, 0, 0, 0, 0, 0, 0],
+    [0, 0, 0, 0, 0, 0, 0],
+    [0, 0, 0, 0, 0, 0, 0],
+]
 
 print(calculate_absorption_probabilities(weights))
