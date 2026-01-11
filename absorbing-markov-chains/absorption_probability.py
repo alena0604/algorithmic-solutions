@@ -53,12 +53,12 @@ def calculate_absorption_probabilities(weights):
     b_matrix = (i_matrix - q_matrix).LUsolve(r_matrix)
 
     # 5.
-    probs = b_matrix.row(0)
+    start_state_0 = b_matrix.row(0)
 
-    denominators = [p.q for p in probs]
+    denominators = [p.q for p in start_state_0]
     common_den = lcm(*denominators)
 
-    result = [int(p.p * (common_den // p.q)) for p in probs]
+    result = [int(p.p * (common_den // p.q)) for p in start_state_0]
     result.append(common_den)
 
     return result
