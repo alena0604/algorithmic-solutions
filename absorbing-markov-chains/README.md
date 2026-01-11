@@ -1,7 +1,7 @@
 ## Definition
 
 
-## Examples 
+## Examples
 
 
 ## Solution
@@ -18,4 +18,3 @@ Given matrix with weights
 Calculate probability matrix for this we need to weights / sum(weights)
 
 Separate states. We have transitional and absorbing states
-
